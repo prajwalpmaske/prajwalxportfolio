@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Prajwal Maske — Space Portfolio</title>
+<title>Prajwal Maske — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
@@ -50,19 +50,33 @@ body{font-family:var(--font-body);background:var(--space);color:var(--text);over
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:1;}
 
 /* LOADER */
-#loader{position:fixed;inset:0;background:var(--space);z-index:99997;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;transition:opacity 0.8s var(--ease),visibility 0.8s;}
+#loader{
+  position:fixed;inset:0;background:#00000a;z-index:99997;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.4rem;
+  /* Soft fade out — no flash, just dissolve */
+  transition:opacity 2.2s cubic-bezier(0.4,0,0.2,1), visibility 2.2s;
+}
 #loader.done{opacity:0;visibility:hidden;}
-.loader-ring{width:120px;height:120px;border-radius:50%;border:1px solid rgba(14,165,233,0.2);position:relative;display:flex;align-items:center;justify-content:center;}
+#warp-canvas{position:absolute;inset:0;width:100%;height:100%;}
+.loader-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:1.3rem;pointer-events:none;}
+.loader-ring{width:110px;height:110px;border-radius:50%;border:1px solid rgba(14,165,233,0.1);position:relative;display:flex;align-items:center;justify-content:center;}
 .loader-ring::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:2px solid transparent;border-top-color:var(--blue);border-right-color:var(--aurora);animation:spin-loader 1.5s linear infinite;}
-.loader-ring::after{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px solid transparent;border-bottom-color:var(--purple);animation:spin-loader 2.5s linear infinite reverse;}
+.loader-ring::after{content:'';position:absolute;inset:-9px;border-radius:50%;border:1px solid transparent;border-bottom-color:var(--purple);animation:spin-loader 2.8s linear infinite reverse;}
 @keyframes spin-loader{to{transform:rotate(360deg);}}
-.loader-initials{font-family:var(--font-hud);font-size:2.2rem;font-weight:900;color:var(--blue2);letter-spacing:0.1em;text-shadow:0 0 20px var(--blue),0 0 40px var(--blue);}
-.loader-count{font-family:var(--font-hud);font-size:3.5rem;font-weight:900;color:var(--aurora);text-shadow:0 0 20px var(--aurora);animation:count-blink 1s step-end 3;}
-@keyframes count-blink{0%,100%{opacity:1}50%{opacity:0.3}}
-.loader-label{font-family:var(--font-mono);font-size:0.75rem;color:var(--muted);letter-spacing:0.2em;animation:typing 2s steps(30) forwards;}
-.loader-bar-wrap{width:280px;height:2px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;}
-.loader-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--purple),var(--blue),var(--aurora));animation:load-bar 2.2s var(--ease) forwards;}
-@keyframes load-bar{to{width:100%;}}
+.loader-initials{font-family:var(--font-hud);font-size:2rem;font-weight:900;color:var(--blue2);letter-spacing:0.1em;text-shadow:0 0 20px var(--blue),0 0 40px var(--blue);}
+.loader-count{
+  font-family:var(--font-hud);font-size:3.2rem;font-weight:900;
+  color:var(--aurora);
+  text-shadow:0 0 30px var(--aurora),0 0 60px rgba(6,255,165,0.4);
+  transition:opacity 0.8s ease;
+}
+.loader-label{
+  font-family:var(--font-mono);font-size:0.68rem;
+  color:rgba(100,116,139,0.8);letter-spacing:0.28em;text-align:center;
+  transition:opacity 0.8s ease;
+}
+.loader-bar-wrap{width:260px;height:1px;background:rgba(255,255,255,0.04);overflow:hidden;}
+.loader-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--purple),var(--blue),var(--aurora));}
 
 /* NAV - HUD style */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,5rem);background:rgba(0,1,10,0.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--glass-border);transform:translateY(-100%);animation:slide-nav 0.8s 2.8s var(--ease) forwards;}
@@ -307,12 +321,15 @@ footer span{color:var(--aurora);}
 
 <!-- LOADER -->
 <div id="loader">
-  <div class="loader-ring">
-    <div class="loader-initials">PM</div>
+  <canvas id="warp-canvas"></canvas>
+  <div class="loader-content">
+    <div class="loader-ring">
+      <div class="loader-initials">PM</div>
+    </div>
+    <div class="loader-count" id="loader-count">✦</div>
+    <div class="loader-label" id="loader-label">THE UNIVERSE BREATHES</div>
+    <div class="loader-bar-wrap"><div class="loader-bar" id="loader-bar"></div></div>
   </div>
-  <div class="loader-count" id="loader-count">3</div>
-  <div class="loader-label">INITIALIZING LAUNCH SEQUENCE...</div>
-  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
 </div>
 
 <!-- SPACE CANVAS -->
@@ -536,7 +553,7 @@ footer span{color:var(--aurora);}
           <div class="radar-ring"></div>
           <div class="radar-ring"></div>
           <div class="radar-ring"></div>
-          <div class="radar-center">PM</div>
+          <div class="radar-center">paxx</div>
         </div>
       </div>
     </div>
@@ -544,21 +561,291 @@ footer span{color:var(--aurora);}
 </section>
 
 <footer>
-  <p>// PRAJWAL MASKE · PORTFOLIO · 2025 &nbsp;|&nbsp; BUILT WITH <span>♥</span> &amp; JAVASCRIPT</p>
+  <p>// PRAJWAL MASKE · PORTFOLIO · 2026 ©️ &nbsp;|&nbsp; BUILT WITH <span>♥</span> &amp; JAVASCRIPT©️</p>
 </footer>
 </main>
 
 <script>
-// ===== LOADER COUNTDOWN =====
-let cnt = 3;
-const lc = document.getElementById('loader-count');
-const countInt = setInterval(() => {
-  cnt--;
-  if(cnt > 0) { lc.textContent = cnt; }
-  else { lc.textContent = '🚀'; clearInterval(countInt); }
-}, 700);
-setTimeout(() => { document.getElementById('loader').classList.add('done'); }, 2400);
+// ===== GRAVITATIONAL STAR LOADER =====
+(function () {
+  const wc = document.getElementById('warp-canvas');
+  const wx = wc.getContext('2d');
+  const ll = document.getElementById('loader-label');
+  const lc = document.getElementById('loader-count');
 
+  function resize() { wc.width = window.innerWidth; wc.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const CX = () => wc.width / 2;
+  const CY = () => wc.height / 2;
+
+  // ── Background star field (two layers) ──
+  const bgStars = Array.from({ length: 320 }, () => ({
+    x: Math.random(),
+    y: Math.random(),
+    r: Math.random() * 1.1 + 0.15,
+    alpha: Math.random() * 0.6 + 0.15,
+    twinkleSpeed: Math.random() * 0.025 + 0.005,
+    twinklePhase: Math.random() * Math.PI * 2,
+    layer: Math.random() < 0.3 ? 1 : 0, // layer 1 = closer, slightly bigger
+  }));
+
+  // ── Light beams coming from left and right ──
+  const NUM_BEAMS = 90;
+  function makeBeam(side) {
+    // side: 'left' or 'right'
+    const cx = CX(), cy = CY();
+    const startY = (Math.random() - 0.5) * wc.height * 1.4 + cy;
+    const startX = side === 'left'
+      ? -Math.random() * wc.width * 0.6 - 20
+      :  wc.width + Math.random() * wc.width * 0.6 + 20;
+    return {
+      x: startX,
+      y: startY,
+      originX: startX,
+      originY: startY,
+      side,
+      // staccato rhythm params
+      speed: Math.random() * 3.5 + 1.2,
+      burstTimer: Math.random() * 60,
+      burstInterval: Math.floor(Math.random() * 40 + 20),
+      burstDuration: Math.floor(Math.random() * 18 + 8),
+      burstActive: false,
+      burstAge: 0,
+      speedBoost: Math.random() * 6 + 3,
+      // visuals
+      thickness: Math.random() * 1.8 + 0.4,
+      trailLen: Math.random() * 90 + 40,
+      color: ['rgba(255,255,255,', 'rgba(147,197,253,', 'rgba(196,181,253,',
+              'rgba(6,255,165,', 'rgba(224,242,254,', 'rgba(186,230,253,'][
+                Math.floor(Math.random() * 6)],
+      bright: Math.random() * 0.55 + 0.35,
+      // gravity curve — how much it bends toward center Y
+      yPull: 0,
+      dead: false,
+      history: [],
+    };
+  }
+
+  const beams = [
+    ...Array.from({ length: NUM_BEAMS / 2 }, () => makeBeam('left')),
+    ...Array.from({ length: NUM_BEAMS / 2 }, () => makeBeam('right')),
+  ];
+
+  // ── Star pulse state ──
+  let starPulse = 0;
+  let starRadius = 0;
+  let coronaAngle = 0;
+
+  // ── Flash state (end of loader) ──
+  let flashAlpha = 0;
+  let flashing = false;
+
+  let frame = 0;
+  const LOADER_FRAMES = 185; // ~3.1s at 60fps
+
+  function drawFrame() {
+    frame++;
+    const cx = CX(), cy = CY();
+    const progress = Math.min(frame / LOADER_FRAMES, 1);
+
+    // Star grows over time
+    starRadius = 18 + progress * 22 + Math.sin(frame * 0.06) * 3;
+    starPulse = Math.sin(frame * 0.08) * 0.12 + 0.88;
+    coronaAngle += 0.004;
+
+    // ── Clear with deep space fade trail ──
+    wx.fillStyle = 'rgba(0, 0, 12, 0.22)';
+    wx.fillRect(0, 0, wc.width, wc.height);
+
+    // ── Draw background stars ──
+    bgStars.forEach(s => {
+      s.twinklePhase += s.twinkleSpeed;
+      const flicker = s.alpha * (0.55 + 0.45 * Math.sin(s.twinklePhase));
+      const px = s.x * wc.width;
+      const py = s.y * wc.height;
+      const r = s.r * (s.layer === 1 ? 1.4 : 1);
+      wx.beginPath();
+      wx.arc(px, py, r, 0, Math.PI * 2);
+      wx.fillStyle = `rgba(200,220,255,${flicker})`;
+      wx.fill();
+      // soft glow on layer-1 stars
+      if (s.layer === 1 && r > 1) {
+        wx.beginPath();
+        wx.arc(px, py, r * 2.8, 0, Math.PI * 2);
+        wx.fillStyle = `rgba(180,210,255,${flicker * 0.15})`;
+        wx.fill();
+      }
+    });
+
+    // ── Draw & update beams ──
+    beams.forEach(b => {
+      if (b.dead) return;
+
+      // Staccato timing
+      b.burstTimer++;
+      if (!b.burstActive && b.burstTimer >= b.burstInterval) {
+        b.burstActive = true;
+        b.burstAge = 0;
+        b.burstTimer = 0;
+        b.burstInterval = Math.floor(Math.random() * 40 + 15);
+        b.burstDuration = Math.floor(Math.random() * 18 + 8);
+      }
+      if (b.burstActive) {
+        b.burstAge++;
+        if (b.burstAge >= b.burstDuration) b.burstActive = false;
+      }
+
+      const currentSpeed = b.burstActive
+        ? b.speed * b.speedBoost
+        : b.speed * 0.25; // slow crawl between bursts
+
+      // Move toward center X
+      const dx = cx - b.x;
+      const distToCenterX = Math.abs(dx);
+
+      // Pull Y toward center as beam gets closer (gravity curve)
+      const yPullStrength = Math.max(0, 1 - distToCenterX / (wc.width * 0.6));
+      b.y += (cy - b.y) * yPullStrength * 0.04;
+
+      // Move horizontally
+      b.x += (b.side === 'left' ? 1 : -1) * currentSpeed;
+
+      // Store trail
+      b.history.push({ x: b.x, y: b.y });
+      if (b.history.length > 28) b.history.shift();
+
+      // Reached center — absorbed by star
+      if (Math.abs(b.x - cx) < starRadius + 4 && Math.abs(b.y - cy) < starRadius + 8) {
+        b.dead = true;
+        return;
+      }
+
+      // Draw trail
+      if (b.history.length > 2) {
+        for (let i = 1; i < b.history.length; i++) {
+          const t = i / b.history.length;
+          const prevH = b.history[i - 1];
+          const currH = b.history[i];
+          wx.beginPath();
+          wx.moveTo(prevH.x, prevH.y);
+          wx.lineTo(currH.x, currH.y);
+          wx.strokeStyle = b.color + (t * b.bright * (b.burstActive ? 1 : 0.5)) + ')';
+          wx.lineWidth = b.thickness * t * (b.burstActive ? 1.4 : 0.6);
+          wx.lineCap = 'round';
+          wx.stroke();
+        }
+      }
+
+      // Bright head dot
+      const headAlpha = b.bright * (b.burstActive ? 1 : 0.35);
+      wx.beginPath();
+      wx.arc(b.x, b.y, b.thickness * (b.burstActive ? 2.2 : 1), 0, Math.PI * 2);
+      wx.fillStyle = b.color + headAlpha + ')';
+      wx.fill();
+    });
+
+    // Respawn dead beams
+    beams.forEach((b, i) => {
+      if (b.dead && frame < LOADER_FRAMES - 20) {
+        beams[i] = makeBeam(i < NUM_BEAMS / 2 ? 'left' : 'right');
+      }
+    });
+
+    // ── Draw the central STAR ──
+    // Outer corona layers
+    [
+      { r: starRadius * 5.5, a: 0.025 },
+      { r: starRadius * 3.8, a: 0.055 },
+      { r: starRadius * 2.4, a: 0.10 },
+      { r: starRadius * 1.6, a: 0.22 },
+    ].forEach(layer => {
+      const g = wx.createRadialGradient(cx, cy, 0, cx, cy, layer.r * starPulse);
+      g.addColorStop(0, `rgba(255,240,200,${layer.a * 2})`);
+      g.addColorStop(0.3, `rgba(14,165,233,${layer.a})`);
+      g.addColorStop(0.7, `rgba(124,58,237,${layer.a * 0.4})`);
+      g.addColorStop(1, 'rgba(0,0,0,0)');
+      wx.fillStyle = g;
+      wx.beginPath();
+      wx.arc(cx, cy, layer.r * starPulse, 0, Math.PI * 2);
+      wx.fill();
+    });
+
+    // Rotating corona rays
+    wx.save();
+    wx.translate(cx, cy);
+    wx.rotate(coronaAngle);
+    for (let r = 0; r < 6; r++) {
+      wx.rotate(Math.PI / 3);
+      wx.beginPath();
+      wx.moveTo(0, 0);
+      const rayLen = (starRadius * 2.2 + Math.sin(frame * 0.05 + r) * starRadius * 0.5) * starPulse;
+      wx.lineTo(rayLen, 0);
+      const rg = wx.createLinearGradient(0, 0, rayLen, 0);
+      rg.addColorStop(0, 'rgba(255,240,180,0.25)');
+      rg.addColorStop(1, 'rgba(255,200,100,0)');
+      wx.strokeStyle = rg;
+      wx.lineWidth = 1.5;
+      wx.stroke();
+    }
+    wx.restore();
+
+    // Star core
+    const coreG = wx.createRadialGradient(cx, cy, 0, cx, cy, starRadius * starPulse);
+    coreG.addColorStop(0, 'rgba(255,255,240,1)');
+    coreG.addColorStop(0.3, 'rgba(255,220,120,0.95)');
+    coreG.addColorStop(0.65, 'rgba(14,165,233,0.7)');
+    coreG.addColorStop(1, 'rgba(124,58,237,0)');
+    wx.fillStyle = coreG;
+    wx.beginPath();
+    wx.arc(cx, cy, starRadius * starPulse, 0, Math.PI * 2);
+    wx.fill();
+
+    // Inner bright point
+    const innerG = wx.createRadialGradient(cx, cy, 0, cx, cy, starRadius * 0.45);
+    innerG.addColorStop(0, 'rgba(255,255,255,1)');
+    innerG.addColorStop(1, 'rgba(255,255,255,0)');
+    wx.fillStyle = innerG;
+    wx.beginPath();
+    wx.arc(cx, cy, starRadius * 0.45, 0, Math.PI * 2);
+    wx.fill();
+
+    // ── Flash at the end ──
+    if (frame >= LOADER_FRAMES - 15) {
+      flashAlpha = Math.min(1, (frame - (LOADER_FRAMES - 15)) / 15);
+      wx.fillStyle = `rgba(255,255,255,${flashAlpha * 0.92})`;
+      wx.fillRect(0, 0, wc.width, wc.height);
+    }
+
+    if (frame < LOADER_FRAMES + 5) requestAnimationFrame(drawFrame);
+  }
+  requestAnimationFrame(drawFrame);
+
+  // Countdown labels
+  const phaseLabels = [
+    'DETECTING GRAVITATIONAL FIELD...',
+    'LIGHT BENDING TOWARD CORE...',
+    'SINGULARITY REACHED...',
+  ];
+  let cnt = 3;
+  const countInt = setInterval(() => {
+    cnt--;
+    if (cnt > 0) {
+      lc.textContent = cnt;
+      if (ll) ll.textContent = phaseLabels[3 - cnt - 1];
+    } else {
+      lc.textContent = '★';
+      if (ll) ll.textContent = 'ENTERING THE LIGHT';
+      clearInterval(countInt);
+    }
+  }, 950);
+
+  // Fade out loader after flash
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('done');
+  }, 3200);
+})();
 // ===== CURSOR =====
 const cross = document.getElementById('cur-cross');
 const cdot = document.getElementById('cur-dot');
