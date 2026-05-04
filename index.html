@@ -4,6 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Prajwal Maske — Portfolio</title>
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIj4KICA8IS0tIERhcmsgc3BhY2UgYmFja2dyb3VuZCAtLT4KICA8cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI3IiBmaWxsPSIjMDAwMTBhIi8+CiAgPCEtLSBPdXRlciBoZXggcmluZyBhY2NlbnQgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIxNiwyIDI4LDkgMjgsMjMgMTYsMzAgNCwyMyA0LDkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzBlYTVlOSIgc3Ryb2tlLXdpZHRoPSIxLjIiIG9wYWNpdHk9IjAuNyIvPgogIDwhLS0gSW5uZXIgZ2xvdyBkb3QgLS0+CiAgPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMi41IiBmaWxsPSIjMDZmZmE1IiBvcGFjaXR5PSIwLjkiLz4KICA8IS0tIFAgbGV0dGVyIC0tPgogIDx0ZXh0IHg9IjUiIHk9IjIyIiBmb250LWZhbWlseT0iQXJpYWwgQmxhY2ssIHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI5MDAiIGZvbnQtc2l6ZT0iMTMiIGZpbGw9IiMzOGJkZjgiIGxldHRlci1zcGFjaW5nPSItMSI+UDwvdGV4dD4KICA8IS0tIE0gbGV0dGVyIC0tPgogIDx0ZXh0IHg9IjE2IiB5PSIyMiIgZm9udC1mYW1pbHk9IkFyaWFsIEJsYWNrLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iOTAwIiBmb250LXNpemU9IjEzIiBmaWxsPSIjYTc4YmZhIiBsZXR0ZXItc3BhY2luZz0iLTEiPk08L3RleHQ+Cjwvc3ZnPgo="/>
+
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
@@ -43,8 +46,8 @@ body{font-family:var(--font-body);background:var(--space);color:var(--text);over
 .cur-dot{position:fixed;pointer-events:none;z-index:99999;width:6px;height:6px;background:var(--aurora);border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 8px var(--aurora),0 0 16px var(--aurora);}
 .cur-ring{position:fixed;pointer-events:none;z-index:99998;width:20px;height:20px;border:1px solid rgba(6,255,165,0.5);border-radius:50%;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s;}
 
-/* STAR CANVAS */
-#space-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
+/* STAR CANVAS — Cinematic Galaxy */
+#space-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;will-change:transform;}
 
 /* NOISE */
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:1;}
@@ -115,8 +118,11 @@ main{position:relative;z-index:2;}
 .hud-line span{font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);letter-spacing:0.15em;white-space:nowrap;}
 
 /* HERO */
-#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding:100px clamp(1.5rem,6vw,5rem) 4rem;max-width:1400px;margin:0 auto;}
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding:100px clamp(1.5rem,6vw,5rem) 4rem;max-width:1400px;margin:0 auto;position:relative;}
 .hero-left{display:flex;flex-direction:column;gap:1.5rem;}
+/* hero text shadow boost for galaxy readability */
+.hero-name{filter:drop-shadow(0 0 32px rgba(14,165,233,0.18));}
+.hero-sub{text-shadow:0 1px 24px rgba(0,0,12,0.8);}
 .status-beacon{display:inline-flex;align-items:center;gap:0.6rem;background:rgba(6,255,165,0.06);border:1px solid rgba(6,255,165,0.2);color:var(--aurora);padding:0.4rem 1rem;border-radius:4px;font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.1em;width:fit-content;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
 .beacon-dot{width:7px;height:7px;background:var(--aurora);border-radius:50%;animation:beacon 2s ease infinite;box-shadow:0 0 8px var(--aurora);}
 @keyframes beacon{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(0.6);opacity:0.4}}
@@ -124,7 +130,7 @@ main{position:relative;z-index:2;}
 @keyframes name-shimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 .hero-sub{font-family:var(--font-body);font-size:clamp(1rem,1.8vw,1.2rem);color:var(--muted);font-weight:400;line-height:1.7;}
 .hero-sub strong{color:var(--gold);font-weight:600;}
-.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;margin-top:0.5rem;}
+.hero-ctas{display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:0.5rem;align-items:center;}
 .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.7rem 1.6rem;font-family:var(--font-hud);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-decoration:none;cursor:pointer;border:none;transition:transform 0.2s var(--ease),box-shadow 0.2s;position:relative;overflow:hidden;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
 .btn::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.08);transform:scaleX(0);transform-origin:left;transition:transform 0.3s var(--ease);}
 .btn:hover::before{transform:scaleX(1);}
@@ -132,6 +138,31 @@ main{position:relative;z-index:2;}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(14,165,233,0.4);}
 .btn-ghost{background:transparent;color:var(--aurora);border:1px solid rgba(6,255,165,0.3);}
 .btn-ghost:hover{transform:translateY(-2px);border-color:var(--aurora);box-shadow:0 0 20px rgba(6,255,165,0.15);}
+.btn-cv{
+  background:transparent;
+  color:var(--gold);
+  border:1px solid rgba(245,158,11,0.4);
+  position:relative;
+  overflow:hidden;
+}
+.btn-cv::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(245,158,11,0.02));
+  pointer-events:none;
+}
+.btn-cv:hover{
+  transform:translateY(-2px);
+  border-color:var(--gold);
+  box-shadow:0 0 20px rgba(245,158,11,0.2),0 0 40px rgba(245,158,11,0.1);
+  color:var(--gold);
+}
+.btn-cv .cv-icon{
+  display:inline-block;
+  animation:cv-bounce 2s ease infinite;
+}
+@keyframes cv-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(2px)}}
 
 /* HERO CARD - orbital */
 .hero-right{display:flex;align-items:center;justify-content:center;}
@@ -281,6 +312,11 @@ main{position:relative;z-index:2;}
 @keyframes radar-pulse{0%{transform:scale(1);opacity:0.8}100%{transform:scale(2.6);opacity:0;}}
 .radar-center{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;font-family:var(--font-hud);font-size:1.4rem;font-weight:900;color:white;z-index:1;position:relative;box-shadow:0 0 30px rgba(14,165,233,0.4),0 0 60px rgba(124,58,237,0.2);}
 
+/* GALAXY PARALLAX FADE HINT */
+.galaxy-fade-hint{position:fixed;bottom:2.2rem;left:50%;transform:translateX(-50%);font-family:var(--font-mono);font-size:0.6rem;color:rgba(147,197,253,0.55);letter-spacing:0.22em;pointer-events:none;z-index:3;animation:hint-pulse 2.8s ease infinite;opacity:1;transition:opacity 0.6s;}
+.galaxy-fade-hint.hidden{opacity:0;pointer-events:none;}
+@keyframes hint-pulse{0%,100%{opacity:0.35;transform:translateX(-50%) translateY(0);}50%{opacity:0.75;transform:translateX(-50%) translateY(-5px);}}
+
 /* FOOTER */
 footer{text-align:center;padding:2rem;border-top:1px solid var(--glass-border);font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;position:relative;z-index:2;background:rgba(0,1,10,0.8);}
 footer span{color:var(--aurora);}
@@ -363,6 +399,7 @@ footer span{color:var(--aurora);}
     <div class="hero-ctas">
       <a href="mailto:prajwalmaske07@gmail.com" class="btn btn-primary">⬡ INITIATE CONTACT</a>
       <a href="https://www.linkedin.com/in/prajwalpmaske" target="_blank" class="btn btn-ghost">↗ LINKEDIN</a>
+      <a href="https://drive.google.com/file/d/1e4tm565c9oBMVcLRuF8nbdy7-8M8qOch/view?usp=drivesdk" target="_blank" rel="noopener" class="btn btn-cv" download>⬇ DOWNLOAD CV</a>
     </div>
   </div>
   <div class="hero-right reveal right">
@@ -377,7 +414,7 @@ footer span{color:var(--aurora);}
           </div>
         </div>
         <div class="orbit-name">PRAJWAL MASKE</div>
-        <div class="orbit-role">// DATA_ANALYST</div>
+        <div class="orbit-role">DATA ANALYST</div>
         <div class="orbit-stats">
           <div class="ostat"><div class="ostat-num">5+</div><div class="ostat-label">Projects</div></div>
           <div class="ostat"><div class="ostat-num">5+</div><div class="ostat-label">Certs</div></div>
@@ -561,12 +598,15 @@ footer span{color:var(--aurora);}
 </section>
 
 <footer>
-  <p>// PRAJWAL MASKE · PORTFOLIO · 2026 ©️ &nbsp;|&nbsp; BUILT WITH <span>♥</span> &amp; JAVASCRIPT©️</p>
+  <p>PRAJWAL MASKE · PORTFOLIO · 2026 ©️ &nbsp;|&nbsp; BUILT WITH <span>♥</span> &amp; JAVASCRIPT</p>
 </footer>
 </main>
 
+// <!-- galaxy scroll hint -->
+ // <!-- <div class="galaxy-fade-hint" id="galaxy-hint">↓ SCROLL TO EXPLORE ↓</div> -->
+
 <script>
-// ===== GRAVITATIONAL STAR LOADER =====
+// ===== PERIMETER CONVERGENCE LOADER =====
 (function () {
   const wc = document.getElementById('warp-canvas');
   const wx = wc.getContext('2d');
@@ -577,274 +617,354 @@ footer span{color:var(--aurora);}
   resize();
   window.addEventListener('resize', resize);
 
+  const W = () => wc.width;
+  const H = () => wc.height;
   const CX = () => wc.width / 2;
   const CY = () => wc.height / 2;
 
-  // ── Background star field (two layers) ──
-  const bgStars = Array.from({ length: 320 }, () => ({
+  // ─── background star field ───
+  const BG_STARS = Array.from({ length: 260 }, () => ({
     x: Math.random(),
     y: Math.random(),
-    r: Math.random() * 1.1 + 0.15,
-    alpha: Math.random() * 0.6 + 0.15,
-    twinkleSpeed: Math.random() * 0.025 + 0.005,
-    twinklePhase: Math.random() * Math.PI * 2,
-    layer: Math.random() < 0.3 ? 1 : 0, // layer 1 = closer, slightly bigger
+    r: Math.random() * 1.0 + 0.15,
+    alpha: Math.random() * 0.55 + 0.1,
+    phase: Math.random() * Math.PI * 2,
+    speed: Math.random() * 0.022 + 0.004,
   }));
 
-  // ── Light beams coming from left and right ──
-  const NUM_BEAMS = 90;
-  function makeBeam(side) {
-    // side: 'left' or 'right'
-    const cx = CX(), cy = CY();
-    const startY = (Math.random() - 0.5) * wc.height * 1.4 + cy;
-    const startX = side === 'left'
-      ? -Math.random() * wc.width * 0.6 - 20
-      :  wc.width + Math.random() * wc.width * 0.6 + 20;
+  // ─── spawn a star from the full perimeter ───
+  const COLORS = [
+    'rgba(255,255,255,',
+    'rgba(147,197,253,',
+    'rgba(196,181,253,',
+    'rgba(6,255,165,',
+    'rgba(255,220,120,',
+    'rgba(224,242,254,',
+    'rgba(165,180,252,',
+  ];
+
+  function spawnStar() {
+    const w = W(), h = H(), cx = CX(), cy = CY();
+    // pick random point along full perimeter
+    const perim = 2 * (w + h);
+    let t = Math.random() * perim;
+    let sx, sy;
+    if (t < w)        { sx = t;         sy = 0; }
+    else if (t < w+h) { sx = w;         sy = t - w; }
+    else if (t < 2*w+h){ sx = 2*w+h-t; sy = h; }
+    else               { sx = 0;        sy = 2*(w+h)-t; }
+
+    // random control points for bezier path (organic curve)
+    const midX = sx + (cx - sx) * (0.3 + Math.random() * 0.4);
+    const midY = sy + (cy - sy) * (0.3 + Math.random() * 0.4);
+    const cpX  = midX + (Math.random() - 0.5) * w * 0.55;
+    const cpY  = midY + (Math.random() - 0.5) * h * 0.55;
+
+    // staccato: each star has burst rhythm
+    const baseSpeed = 0.0012 + Math.random() * 0.0022;
     return {
-      x: startX,
-      y: startY,
-      originX: startX,
-      originY: startY,
-      side,
-      // staccato rhythm params
-      speed: Math.random() * 3.5 + 1.2,
-      burstTimer: Math.random() * 60,
-      burstInterval: Math.floor(Math.random() * 40 + 20),
-      burstDuration: Math.floor(Math.random() * 18 + 8),
+      sx, sy,
+      cx: cpX, cy: cpY,   // bezier control point
+      t: 0,                // bezier progress 0→1
+      baseSpeed,
+      speed: baseSpeed,
+      size: 0.4 + Math.random() * 2.2,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      bright: 0.5 + Math.random() * 0.5,
+      // staccato rhythm
+      burstTimer: Math.random() * 80,
+      burstInterval: 30 + Math.random() * 60,
+      burstDuration: 8 + Math.random() * 20,
       burstActive: false,
       burstAge: 0,
-      speedBoost: Math.random() * 6 + 3,
-      // visuals
-      thickness: Math.random() * 1.8 + 0.4,
-      trailLen: Math.random() * 90 + 40,
-      color: ['rgba(255,255,255,', 'rgba(147,197,253,', 'rgba(196,181,253,',
-              'rgba(6,255,165,', 'rgba(224,242,254,', 'rgba(186,230,253,'][
-                Math.floor(Math.random() * 6)],
-      bright: Math.random() * 0.55 + 0.35,
-      // gravity curve — how much it bends toward center Y
-      yPull: 0,
+      burstBoost: 3 + Math.random() * 4,
+      // orbit wobble near center
+      wobble: (Math.random() - 0.5) * 0.08,
       dead: false,
-      history: [],
+      // trail
+      trail: [],
     };
   }
 
-  const beams = [
-    ...Array.from({ length: NUM_BEAMS / 2 }, () => makeBeam('left')),
-    ...Array.from({ length: NUM_BEAMS / 2 }, () => makeBeam('right')),
-  ];
+  const NUM_STARS = 500;
+  let stars = Array.from({ length: NUM_STARS }, spawnStar);
 
-  // ── Star pulse state ──
-  let starPulse = 0;
-  let starRadius = 0;
+  // ─── central star state ───
+  let starR = 14;
   let coronaAngle = 0;
+  let starPulse = 1;
 
-  // ── Flash state (end of loader) ──
+  // ─── global speed multiplier (accelerates at t=1s and t=2s) ───
+  let globalMult = 1;
+  // ─── explosion state ───
+  let exploding = false;
+  let explodeParticles = [];
+  let explodeFrame = 0;
   let flashAlpha = 0;
-  let flashing = false;
 
+  // ─── frame counter ───
   let frame = 0;
-  const LOADER_FRAMES = 185; // ~3.1s at 60fps
+  const FPS = 60;
+  const SEC = FPS;
+
+  function triggerExplosion() {
+    exploding = true;
+    explodeFrame = 0;
+    const cx = CX(), cy = CY();
+    for (let i = 0; i < 220; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 2 + Math.random() * 9;
+      const col = COLORS[Math.floor(Math.random() * COLORS.length)];
+      explodeParticles.push({
+        x: cx, y: cy,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        r: 0.6 + Math.random() * 2.8,
+        alpha: 0.8 + Math.random() * 0.2,
+        color: col,
+        decay: 0.012 + Math.random() * 0.018,
+        fade: 0.025 + Math.random() * 0.02,
+      });
+    }
+  }
 
   function drawFrame() {
     frame++;
-    const cx = CX(), cy = CY();
-    const progress = Math.min(frame / LOADER_FRAMES, 1);
+    const cx = CX(), cy = CY(), w = W(), h = H();
 
-    // Star grows over time
-    starRadius = 18 + progress * 22 + Math.sin(frame * 0.06) * 3;
-    starPulse = Math.sin(frame * 0.08) * 0.12 + 0.88;
-    coronaAngle += 0.004;
+    // ─── Speed milestones ───
+    if (frame === SEC)       globalMult = 5;
+    if (frame === SEC * 2)   globalMult = 6;
+    if (frame === SEC * 3 - 10 && !exploding) triggerExplosion();
 
-    // ── Clear with deep space fade trail ──
-    wx.fillStyle = 'rgba(0, 0, 12, 0.22)';
-    wx.fillRect(0, 0, wc.width, wc.height);
+    // ─── Trail fade ───
+    const fadeAlpha = exploding ? 0.35 : 0.17;
+    wx.fillStyle = `rgba(0,0,12,${fadeAlpha})`;
+    wx.fillRect(0, 0, w, h);
 
-    // ── Draw background stars ──
-    bgStars.forEach(s => {
-      s.twinklePhase += s.twinkleSpeed;
-      const flicker = s.alpha * (0.55 + 0.45 * Math.sin(s.twinklePhase));
-      const px = s.x * wc.width;
-      const py = s.y * wc.height;
-      const r = s.r * (s.layer === 1 ? 1.4 : 1);
+    // ─── Background stars ───
+    BG_STARS.forEach(s => {
+      s.phase += s.speed;
+      const flicker = s.alpha * (0.5 + 0.5 * Math.sin(s.phase));
+      const px = s.x * w, py = s.y * h;
       wx.beginPath();
-      wx.arc(px, py, r, 0, Math.PI * 2);
+      wx.arc(px, py, s.r, 0, Math.PI * 2);
       wx.fillStyle = `rgba(200,220,255,${flicker})`;
       wx.fill();
-      // soft glow on layer-1 stars
-      if (s.layer === 1 && r > 1) {
-        wx.beginPath();
-        wx.arc(px, py, r * 2.8, 0, Math.PI * 2);
-        wx.fillStyle = `rgba(180,210,255,${flicker * 0.15})`;
-        wx.fill();
-      }
     });
 
-    // ── Draw & update beams ──
-    beams.forEach(b => {
-      if (b.dead) return;
+    // ─── Update & draw perimeter stars ───
+    if (!exploding) {
+      stars.forEach((s, idx) => {
+        if (s.dead) return;
 
-      // Staccato timing
-      b.burstTimer++;
-      if (!b.burstActive && b.burstTimer >= b.burstInterval) {
-        b.burstActive = true;
-        b.burstAge = 0;
-        b.burstTimer = 0;
-        b.burstInterval = Math.floor(Math.random() * 40 + 15);
-        b.burstDuration = Math.floor(Math.random() * 18 + 8);
-      }
-      if (b.burstActive) {
-        b.burstAge++;
-        if (b.burstAge >= b.burstDuration) b.burstActive = false;
-      }
-
-      const currentSpeed = b.burstActive
-        ? b.speed * b.speedBoost
-        : b.speed * 0.25; // slow crawl between bursts
-
-      // Move toward center X
-      const dx = cx - b.x;
-      const distToCenterX = Math.abs(dx);
-
-      // Pull Y toward center as beam gets closer (gravity curve)
-      const yPullStrength = Math.max(0, 1 - distToCenterX / (wc.width * 0.6));
-      b.y += (cy - b.y) * yPullStrength * 0.04;
-
-      // Move horizontally
-      b.x += (b.side === 'left' ? 1 : -1) * currentSpeed;
-
-      // Store trail
-      b.history.push({ x: b.x, y: b.y });
-      if (b.history.length > 28) b.history.shift();
-
-      // Reached center — absorbed by star
-      if (Math.abs(b.x - cx) < starRadius + 4 && Math.abs(b.y - cy) < starRadius + 8) {
-        b.dead = true;
-        return;
-      }
-
-      // Draw trail
-      if (b.history.length > 2) {
-        for (let i = 1; i < b.history.length; i++) {
-          const t = i / b.history.length;
-          const prevH = b.history[i - 1];
-          const currH = b.history[i];
-          wx.beginPath();
-          wx.moveTo(prevH.x, prevH.y);
-          wx.lineTo(currH.x, currH.y);
-          wx.strokeStyle = b.color + (t * b.bright * (b.burstActive ? 1 : 0.5)) + ')';
-          wx.lineWidth = b.thickness * t * (b.burstActive ? 1.4 : 0.6);
-          wx.lineCap = 'round';
-          wx.stroke();
+        // staccato burst logic
+        s.burstTimer++;
+        if (!s.burstActive && s.burstTimer >= s.burstInterval) {
+          s.burstActive = true; s.burstAge = 0; s.burstTimer = 0;
+          s.burstInterval = 25 + Math.random() * 55;
+          s.burstDuration = 6 + Math.random() * 18;
         }
-      }
+        if (s.burstActive) {
+          s.burstAge++;
+          if (s.burstAge >= s.burstDuration) s.burstActive = false;
+        }
 
-      // Bright head dot
-      const headAlpha = b.bright * (b.burstActive ? 1 : 0.35);
-      wx.beginPath();
-      wx.arc(b.x, b.y, b.thickness * (b.burstActive ? 2.2 : 1), 0, Math.PI * 2);
-      wx.fillStyle = b.color + headAlpha + ')';
-      wx.fill();
-    });
+        const burstMult = s.burstActive ? s.burstBoost : 0.22;
+        const dt = s.speed * globalMult * burstMult;
 
-    // Respawn dead beams
-    beams.forEach((b, i) => {
-      if (b.dead && frame < LOADER_FRAMES - 20) {
-        beams[i] = makeBeam(i < NUM_BEAMS / 2 ? 'left' : 'right');
-      }
-    });
+        // near center: add gentle orbital wobble
+        const distToCenter = Math.hypot(
+          bezierPoint(s.sx, s.cx, cx, s.t).x - cx,
+          bezierPoint(s.sx, s.cx, cx, s.t).y - cy
+        );
+        const orbitFactor = s.t > 0.75 ? (s.t - 0.75) / 0.25 : 0;
 
-    // ── Draw the central STAR ──
-    // Outer corona layers
-    [
-      { r: starRadius * 5.5, a: 0.025 },
-      { r: starRadius * 3.8, a: 0.055 },
-      { r: starRadius * 2.4, a: 0.10 },
-      { r: starRadius * 1.6, a: 0.22 },
-    ].forEach(layer => {
-      const g = wx.createRadialGradient(cx, cy, 0, cx, cy, layer.r * starPulse);
-      g.addColorStop(0, `rgba(255,240,200,${layer.a * 2})`);
-      g.addColorStop(0.3, `rgba(14,165,233,${layer.a})`);
-      g.addColorStop(0.7, `rgba(124,58,237,${layer.a * 0.4})`);
-      g.addColorStop(1, 'rgba(0,0,0,0)');
-      wx.fillStyle = g;
-      wx.beginPath();
-      wx.arc(cx, cy, layer.r * starPulse, 0, Math.PI * 2);
-      wx.fill();
-    });
+        s.t += dt + orbitFactor * s.wobble * 0.01;
 
-    // Rotating corona rays
-    wx.save();
-    wx.translate(cx, cy);
-    wx.rotate(coronaAngle);
-    for (let r = 0; r < 6; r++) {
-      wx.rotate(Math.PI / 3);
-      wx.beginPath();
-      wx.moveTo(0, 0);
-      const rayLen = (starRadius * 2.2 + Math.sin(frame * 0.05 + r) * starRadius * 0.5) * starPulse;
-      wx.lineTo(rayLen, 0);
-      const rg = wx.createLinearGradient(0, 0, rayLen, 0);
-      rg.addColorStop(0, 'rgba(255,240,180,0.25)');
-      rg.addColorStop(1, 'rgba(255,200,100,0)');
-      wx.strokeStyle = rg;
-      wx.lineWidth = 1.5;
-      wx.stroke();
-    }
-    wx.restore();
+        // quadratic bezier position
+        const pos = bezier2(s.sx, s.sy, s.cx, s.cy, cx, cy, Math.min(s.t, 1));
 
-    // Star core
-    const coreG = wx.createRadialGradient(cx, cy, 0, cx, cy, starRadius * starPulse);
-    coreG.addColorStop(0, 'rgba(255,255,240,1)');
-    coreG.addColorStop(0.3, 'rgba(255,220,120,0.95)');
-    coreG.addColorStop(0.65, 'rgba(14,165,233,0.7)');
-    coreG.addColorStop(1, 'rgba(124,58,237,0)');
-    wx.fillStyle = coreG;
-    wx.beginPath();
-    wx.arc(cx, cy, starRadius * starPulse, 0, Math.PI * 2);
-    wx.fill();
+        // trail
+        s.trail.push({ x: pos.x, y: pos.y });
+        if (s.trail.length > 20) s.trail.shift();
 
-    // Inner bright point
-    const innerG = wx.createRadialGradient(cx, cy, 0, cx, cy, starRadius * 0.45);
-    innerG.addColorStop(0, 'rgba(255,255,255,1)');
-    innerG.addColorStop(1, 'rgba(255,255,255,0)');
-    wx.fillStyle = innerG;
-    wx.beginPath();
-    wx.arc(cx, cy, starRadius * 0.45, 0, Math.PI * 2);
-    wx.fill();
+        // draw trail
+        if (s.trail.length > 2) {
+          for (let i = 1; i < s.trail.length; i++) {
+            const tp = i / s.trail.length;
+            const alpha = tp * s.bright * (s.burstActive ? 0.9 : 0.4);
+            wx.beginPath();
+            wx.moveTo(s.trail[i-1].x, s.trail[i-1].y);
+            wx.lineTo(s.trail[i].x, s.trail[i].y);
+            wx.strokeStyle = s.color + alpha + ')';
+            wx.lineWidth = s.size * tp * (s.burstActive ? 1.5 : 0.7);
+            wx.lineCap = 'round';
+            wx.stroke();
+          }
+        }
 
-    // ── Flash at the end ──
-    if (frame >= LOADER_FRAMES - 15) {
-      flashAlpha = Math.min(1, (frame - (LOADER_FRAMES - 15)) / 15);
-      wx.fillStyle = `rgba(255,255,255,${flashAlpha * 0.92})`;
-      wx.fillRect(0, 0, wc.width, wc.height);
+        // head dot
+        const ha = s.bright * (s.burstActive ? 1 : 0.5);
+        wx.beginPath();
+        wx.arc(pos.x, pos.y, s.size * (s.burstActive ? 1.8 : 1), 0, Math.PI * 2);
+        wx.fillStyle = s.color + ha + ')';
+        wx.fill();
+
+        // glow on larger stars
+        if (s.size > 1.5 && s.burstActive) {
+          wx.beginPath();
+          wx.arc(pos.x, pos.y, s.size * 3.5, 0, Math.PI * 2);
+          wx.fillStyle = s.color + (ha * 0.18) + ')';
+          wx.fill();
+        }
+
+        // absorbed by star
+        if (s.t >= 0.97 || Math.hypot(pos.x - cx, pos.y - cy) < starR + 3) {
+          s.dead = true;
+          // respawn from perimeter (keep the sky full)
+          if (frame < SEC * 3 - 20) stars[idx] = spawnStar();
+        }
+      });
     }
 
-    if (frame < LOADER_FRAMES + 5) requestAnimationFrame(drawFrame);
+    // ─── Central Star ───
+    coronaAngle += 0.003;
+    starPulse = 0.9 + 0.1 * Math.sin(frame * 0.07);
+    starR = 14 + Math.min(frame / 30, 1) * 10;
+
+    if (!exploding) {
+      // outer nebula glow layers
+      [
+        { r: starR * 7,   a: 0.018 },
+        { r: starR * 4.5, a: 0.040 },
+        { r: starR * 2.8, a: 0.085 },
+        { r: starR * 1.7, a: 0.180 },
+      ].forEach(layer => {
+        const g = wx.createRadialGradient(cx, cy, 0, cx, cy, layer.r * starPulse);
+        g.addColorStop(0,   `rgba(255,235,180,${layer.a * 1.8})`);
+        g.addColorStop(0.25,`rgba(14,165,233,${layer.a})`);
+        g.addColorStop(0.6, `rgba(124,58,237,${layer.a * 0.45})`);
+        g.addColorStop(1,   'rgba(0,0,0,0)');
+        wx.fillStyle = g;
+        wx.beginPath(); wx.arc(cx, cy, layer.r * starPulse, 0, Math.PI * 2); wx.fill();
+      });
+
+      // rotating corona rays
+      wx.save(); wx.translate(cx, cy); wx.rotate(coronaAngle);
+      for (let r = 0; r < 8; r++) {
+        wx.rotate(Math.PI / 4);
+        const rl = (starR * 2.5 + Math.sin(frame * 0.05 + r * 0.8) * starR * 0.6) * starPulse;
+        wx.beginPath(); wx.moveTo(0, 0); wx.lineTo(rl, 0);
+        const rg = wx.createLinearGradient(0, 0, rl, 0);
+        rg.addColorStop(0, 'rgba(255,240,160,0.28)');
+        rg.addColorStop(1, 'rgba(255,200,80,0)');
+        wx.strokeStyle = rg; wx.lineWidth = 1.2; wx.stroke();
+      }
+      wx.restore();
+
+      // star core
+      const cg = wx.createRadialGradient(cx, cy, 0, cx, cy, starR * starPulse);
+      cg.addColorStop(0,   'rgba(255,255,240,1)');
+      cg.addColorStop(0.25,'rgba(255,225,130,0.95)');
+      cg.addColorStop(0.6, 'rgba(14,165,233,0.7)');
+      cg.addColorStop(1,   'rgba(124,58,237,0)');
+      wx.fillStyle = cg;
+      wx.beginPath(); wx.arc(cx, cy, starR * starPulse, 0, Math.PI * 2); wx.fill();
+
+      // inner white point
+      const ig = wx.createRadialGradient(cx, cy, 0, cx, cy, starR * 0.4 * starPulse);
+      ig.addColorStop(0, 'rgba(255,255,255,1)');
+      ig.addColorStop(1, 'rgba(255,255,255,0)');
+      wx.fillStyle = ig;
+      wx.beginPath(); wx.arc(cx, cy, starR * 0.4 * starPulse, 0, Math.PI * 2); wx.fill();
+    }
+
+    // ─── Explosion ───
+    if (exploding) {
+      explodeFrame++;
+
+      // draw + update particles
+      explodeParticles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        p.vx *= 0.96; p.vy *= 0.96;
+        p.alpha -= p.fade;
+        p.r *= 0.985;
+        if (p.alpha <= 0) return;
+        wx.beginPath();
+        wx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        wx.fillStyle = p.color + p.alpha + ')';
+        wx.fill();
+        // trail glow
+        wx.beginPath();
+        wx.arc(p.x, p.y, p.r * 2.5, 0, Math.PI * 2);
+        wx.fillStyle = p.color + (p.alpha * 0.12) + ')';
+        wx.fill();
+      });
+
+      // big flash at center during explosion
+      if (explodeFrame < 25) {
+        const flashR = explodeFrame * 18;
+        const eg = wx.createRadialGradient(cx, cy, 0, cx, cy, flashR);
+        eg.addColorStop(0, `rgba(255,255,255,${Math.max(0, 0.9 - explodeFrame * 0.036)})`);
+        eg.addColorStop(0.4, `rgba(14,165,233,${Math.max(0, 0.4 - explodeFrame * 0.016)})`);
+        eg.addColorStop(1, 'rgba(0,0,0,0)');
+        wx.fillStyle = eg;
+        wx.beginPath(); wx.arc(cx, cy, flashR, 0, Math.PI * 2); wx.fill();
+      }
+
+      // full screen white flash at peak
+      if (explodeFrame > 20 && explodeFrame < 50) {
+        flashAlpha = Math.min(1, (explodeFrame - 20) / 18);
+        wx.fillStyle = `rgba(255,255,255,${flashAlpha * 0.85})`;
+        wx.fillRect(0, 0, w, h);
+      } else if (explodeFrame >= 50) {
+        flashAlpha = Math.max(0, flashAlpha - 0.06);
+        wx.fillStyle = `rgba(255,255,255,${flashAlpha})`;
+        wx.fillRect(0, 0, w, h);
+      }
+    }
+
+    requestAnimationFrame(drawFrame);
   }
   requestAnimationFrame(drawFrame);
 
-  // Countdown labels
-  const phaseLabels = [
-    'DETECTING GRAVITATIONAL FIELD...',
-    'LIGHT BENDING TOWARD CORE...',
-    'SINGULARITY REACHED...',
+  // ─── Bezier helpers ───
+  function bezier2(x0, y0, x1, y1, x2, y2, t) {
+    const mt = 1 - t;
+    return {
+      x: mt*mt*x0 + 2*mt*t*x1 + t*t*x2,
+      y: mt*mt*y0 + 2*mt*t*y1 + t*t*y2,
+    };
+  }
+  function bezierPoint(sx, cpx, ex, t) {
+    const mt = 1 - t;
+    return { x: mt*mt*sx + 2*mt*t*cpx + t*t*ex };
+  }
+
+  // ─── Countdown + labels ───
+  const phases = [
+    'STARS AWAKENING FROM THE EDGE...',
+    'CONVERGENCE ACCELERATING...',
+    'ALL PATHS LEAD TO ONE...',
   ];
   let cnt = 3;
+  lc.textContent = cnt;
   const countInt = setInterval(() => {
     cnt--;
     if (cnt > 0) {
       lc.textContent = cnt;
-      if (ll) ll.textContent = phaseLabels[3 - cnt - 1];
+      if (ll) ll.textContent = phases[3 - cnt - 1];
     } else {
       lc.textContent = '★';
       if (ll) ll.textContent = 'ENTERING THE LIGHT';
       clearInterval(countInt);
     }
-  }, 950);
+  }, 1000);
 
-  // Fade out loader after flash
   setTimeout(() => {
     document.getElementById('loader').classList.add('done');
-  }, 3200);
+  }, 3400);
 })();
 // ===== CURSOR =====
 const cross = document.getElementById('cur-cross');
@@ -863,109 +983,143 @@ function animRing(){
 }
 animRing();
 
-// ===== SPACE CANVAS =====
-const canvas = document.getElementById('space-canvas');
-const ctx = canvas.getContext('2d');
-function resize(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
-resize();
-window.addEventListener('resize', resize);
+// ===== BREATHING STARFIELD =====
+(function () {
+  const canvas = document.getElementById('space-canvas');
+  const ctx    = canvas.getContext('2d');
 
-// Stars
-const stars = [];
-for(let i=0;i<280;i++){
-  stars.push({
-    x: Math.random()*canvas.width,
-    y: Math.random()*canvas.height,
-    r: Math.random()*1.5+0.2,
-    alpha: Math.random()*0.8+0.2,
-    twinkle: Math.random()*0.02+0.003,
-    phase: Math.random()*Math.PI*2,
-    color: ['#e2e8f0','#93c5fd','#c4b5fd','#6ee7b7'][Math.floor(Math.random()*4)]
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // ── Star field ──────────────────────────────────────────────
+  const STAR_COUNT = 360;
+  const stars = Array.from({ length: STAR_COUNT }, () => {
+    // Bias vertical placement toward the top (sky feel)
+    const yRaw  = Math.random();
+    const yBias = Math.pow(yRaw, 0.72);
+    return {
+      x:         Math.random(),           // 0-1 fraction of width
+      y:         yBias,                   // 0-1 fraction of height (top-biased)
+      baseR:     Math.random() * 1.15 + 0.22,
+      phase:     Math.random() * Math.PI * 2,
+      breathRate:0.0035 + Math.random() * 0.0085,
+      huePhase:  Math.random() * Math.PI * 2,
+      hueRate:   0.0018 + Math.random() * 0.0048,
+      baseAlpha: 0.32 + Math.random() * 0.58,
+    };
   });
-}
 
-// Shooting stars
-const shooters = [];
-function addShooter(){
-  if(shooters.length < 2) {
-    shooters.push({
-      x: Math.random()*canvas.width*0.8,
-      y: Math.random()*canvas.height*0.4,
-      len: Math.random()*120+80,
-      speed: Math.random()*6+4,
-      alpha: 1,
-      angle: Math.PI/4 + (Math.random()-0.5)*0.3
+  // ── Shooting stars ──────────────────────────────────────────
+  const shooters = [];
+  function addShooter() {
+    if (shooters.length < 2) {
+      shooters.push({
+        x:     Math.random() * canvas.width  * 0.8,
+        y:     Math.random() * canvas.height * 0.38,
+        len:   Math.random() * 120 + 80,
+        speed: Math.random() * 6 + 4,
+        alpha: 1,
+        angle: Math.PI / 4 + (Math.random() - 0.5) * 0.3,
+      });
+    }
+    setTimeout(addShooter, Math.random() * 4500 + 3000);
+  }
+  setTimeout(addShooter, 3800);
+
+  // ── Draw loop ────────────────────────────────────────────────
+  let t = 0;
+
+  function lerp(a, b, n) { return a + (b - a) * n; }
+
+  function drawBackground() {
+    // Deep navy → near-black vertical gradient matching the --space variables
+    const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    grad.addColorStop(0,    'rgba(2,  8, 28, 1)');
+    grad.addColorStop(0.42, 'rgba(1,  3, 16, 1)');
+    grad.addColorStop(1,    'rgba(0,  0,  5, 1)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  function drawStars() {
+    const W = canvas.width, H = canvas.height;
+    stars.forEach(s => {
+      // Breathing pulse
+      const breath = 0.5 + 0.5 * Math.sin(s.phase + t * s.breathRate);
+      const r      = s.baseR  * (0.70 + 0.30 * breath);
+      const alpha  = s.baseAlpha * (0.50 + 0.50 * breath);
+
+      // Hue drift: cool white (#E8EEFF) ↔ ice-blue (#BADDFF)
+      const hT = 0.5 + 0.5 * Math.sin(s.huePhase + t * s.hueRate);
+      const rC = Math.round(lerp(232, 186, hT));
+      const gC = Math.round(lerp(238, 218, hT));
+      const bC = 255;
+
+      const px = s.x * W;
+      const py = s.y * H;
+
+      // Soft corona for brighter, peaked stars
+      if (r > 0.9 && breath > 0.68) {
+        ctx.beginPath();
+        ctx.arc(px, py, r * 3.2, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${rC},${gC},${bC},${alpha * 0.07})`;
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(px, py, r * 1.8, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${rC},${gC},${bC},${alpha * 0.18})`;
+        ctx.fill();
+      }
+
+      // Star core
+      ctx.beginPath();
+      ctx.arc(px, py, r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${rC},${gC},${bC},${alpha})`;
+      ctx.fill();
     });
   }
-  setTimeout(addShooter, Math.random()*4000+3000);
-}
-setTimeout(addShooter, 2000);
 
-// Nebula clouds (static, drawn once)
-function drawNebula(){
-  const nebulas = [
-    {x:canvas.width*0.15,y:canvas.height*0.3,r:300,c:'rgba(124,58,237,'},
-    {x:canvas.width*0.8,y:canvas.height*0.6,r:250,c:'rgba(14,165,233,'},
-    {x:canvas.width*0.5,y:canvas.height*0.85,r:200,c:'rgba(20,184,166,'},
-  ];
-  nebulas.forEach(n=>{
-    const g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,n.r);
-    g.addColorStop(0,n.c+'0.04)');
-    g.addColorStop(0.5,n.c+'0.02)');
-    g.addColorStop(1,n.c+'0)');
-    ctx.fillStyle=g;
-    ctx.beginPath();
-    ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
-    ctx.fill();
-  });
-}
-
-let frame=0;
-function drawSpace(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  drawNebula();
-  frame++;
-  // Stars
-  stars.forEach(s=>{
-    s.phase+=s.twinkle;
-    const a=s.alpha*(0.6+0.4*Math.sin(s.phase));
-    ctx.beginPath();
-    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-    ctx.fillStyle=s.color;
-    ctx.globalAlpha=a;
-    ctx.fill();
-    if(s.r>1){
-      ctx.globalAlpha=a*0.3;
+  function drawShooters() {
+    for (let i = shooters.length - 1; i >= 0; i--) {
+      const s = shooters[i];
+      ctx.save();
+      ctx.globalAlpha = s.alpha;
+      const grd = ctx.createLinearGradient(
+        s.x, s.y,
+        s.x - Math.cos(s.angle) * s.len,
+        s.y - Math.sin(s.angle) * s.len
+      );
+      grd.addColorStop(0, 'rgba(200,230,255,1)');
+      grd.addColorStop(1, 'rgba(200,230,255,0)');
+      ctx.strokeStyle = grd;
+      ctx.lineWidth   = 1.2;
       ctx.beginPath();
-      ctx.arc(s.x,s.y,s.r*2.5,0,Math.PI*2);
-      ctx.fill();
-    }
-    ctx.globalAlpha=1;
-  });
-  // Shooting stars
-  for(let i=shooters.length-1;i>=0;i--){
-    const s=shooters[i];
-    ctx.save();
-    ctx.globalAlpha=s.alpha;
-    const grd=ctx.createLinearGradient(s.x,s.y,s.x-Math.cos(s.angle)*s.len,s.y-Math.sin(s.angle)*s.len);
-    grd.addColorStop(0,'rgba(6,255,165,1)');
-    grd.addColorStop(1,'rgba(6,255,165,0)');
-    ctx.strokeStyle=grd;
-    ctx.lineWidth=1.5;
-    ctx.beginPath();
-    ctx.moveTo(s.x,s.y);
-    ctx.lineTo(s.x-Math.cos(s.angle)*s.len,s.y-Math.sin(s.angle)*s.len);
-    ctx.stroke();
-    ctx.restore();
-    s.x+=Math.cos(s.angle)*s.speed;
-    s.y+=Math.sin(s.angle)*s.speed;
-    s.alpha-=0.015;
-    if(s.alpha<=0) shooters.splice(i,1);
-  }
-  requestAnimationFrame(drawSpace);
-}
-drawSpace();
+      ctx.moveTo(s.x, s.y);
+      ctx.lineTo(s.x - Math.cos(s.angle) * s.len, s.y - Math.sin(s.angle) * s.len);
+      ctx.stroke();
+      ctx.restore();
 
+      s.x     += Math.cos(s.angle) * s.speed;
+      s.y     += Math.sin(s.angle) * s.speed;
+      s.alpha -= 0.012;
+      if (s.alpha <= 0) shooters.splice(i, 1);
+    }
+  }
+
+  function draw() {
+    t++;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBackground();
+    drawStars();
+    drawShooters();
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
 // ===== NAV COORDS UPDATE =====
 const coord = document.getElementById('nav-coords');
 setInterval(()=>{
@@ -1030,6 +1184,14 @@ const cg=document.getElementById('certs-grid');
 certs.forEach(c=>{
   cg.innerHTML+=`<a class="cert-card" href="${c.url}" target="_blank" rel="noopener"><div class="cert-icon">${c.icon}</div><div class="cert-name">${c.name}</div><span class="cert-arrow">↗</span></a>`;
 });
+
+
+// ===== GALAXY SCROLL HINT =====
+const galaxyHint = document.getElementById('galaxy-hint');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 80 && galaxyHint) galaxyHint.classList.add('hidden');
+  else if (galaxyHint) galaxyHint.classList.remove('hidden');
+}, { passive: true });
 
 // ===== INTERSECTION OBSERVER =====
 const revObs=new IntersectionObserver(entries=>{
